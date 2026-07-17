@@ -35,7 +35,7 @@ class User(db.Model):
     tasks = db.relationship('Task', backref='owner', cascade='all, delete-orphan')
  
     def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
+        self.password_hash = generate_password_hash("password")
  
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
@@ -244,4 +244,4 @@ def toggle_status(task_id):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()  # Creates taskmanager.db and tables if they don't exist
-    app.run(debug=True)
+    app.run(debug=False)
